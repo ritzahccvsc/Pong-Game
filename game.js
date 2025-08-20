@@ -84,8 +84,8 @@ canvas.addEventListener('mousemove', function(e) {
 });
 
 // Touch events for mobile paddle control
-canvas.addEventListener('touchstart', handleTouch, false);
-canvas.addEventListener('touchmove', handleTouch, false);
+canvas.addEventListener('touchstart', handleTouch, {passive: false});
+canvas.addEventListener('touchmove', handleTouch, {passive: false});
 
 function handleTouch(e) {
     e.preventDefault(); // Prevent scrolling
