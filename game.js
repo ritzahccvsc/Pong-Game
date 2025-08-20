@@ -83,6 +83,21 @@ canvas.addEventListener('mousemove', function(e) {
     if (player.y + player.height > canvas.height) player.y = canvas.height - player.height;
 });
 
+// Touch events for mobile paddle control
+canvas.addEventListener('touchstart', handleTouch, false);
+canvas.addEventListener('touchmove', handleTouch, false);
+
+function handleTouch(e) {
+    e.preventDefault(); // Prevent scrolling
+    const rect = canvas.getBoundingClientRect();
+    let touch = e.touches[0];
+    let touchY = touch.clientY - rect.top;
+    player.y = touchY - player.height/2;
+    // Clamp paddle inside canvas
+    if (player.y < 0) player.y = 0;
+    if (player.y + player.height > canvas.height) player.y = canvas.height - player.height;
+}
+
 // AI paddle movement
 function aiMove() {
     let aiCenter = ai.y + ai.height/2;
